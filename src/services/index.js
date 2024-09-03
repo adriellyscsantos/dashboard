@@ -8,7 +8,7 @@ import FeedbacksService from './feedbacks'
 const API_ENVS = {
   production: 'https://backend-treinamento-vue3.vercel.app',
   development: '',
-  local: 'http://localhost:3000'
+  local: 'https://backend-treinamento-vue3.vercel.app'
 }
 
 const httpClient = axios.create({
@@ -30,8 +30,8 @@ httpClient.interceptors.response.use((response) => {
   setGlobalLoading(false)
   return response
 }, (error) => {
-  const canThrowAnError = error.response.status === 0 ||
-    error.response.status === 500
+  const canThrowAnError = error.request.status === 0 ||
+    error.request.status === 500
 
   if (canThrowAnError) {
     setGlobalLoading(false)
